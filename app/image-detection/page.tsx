@@ -13,6 +13,7 @@ const imageUrlSchema = z.string().url("Invalid URL format");
 export default function Page() {
   const [imageUrl, setImageUrl] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [session, setSession] = useState<any>(null);
 
   useEffect(() => {

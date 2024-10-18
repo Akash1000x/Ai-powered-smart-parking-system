@@ -44,7 +44,12 @@ const ParkingForm = ({ placeId }: { placeId: string }) => {
       setError(null);
       const res = await calculatePayment(chekOutCarNumber);
       if (res.success) {
-        setAmount(res.amount);
+        if (res.amount !== undefined) {
+          setAmount(res.amount);
+        } else {
+          setError("Failed to calculate amount.");
+        }
+
         toast(`Amount to be paid: ${res.amount}`);
       } else {
         toast.error(res.error);

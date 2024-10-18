@@ -27,7 +27,7 @@ const Pricing = () => {
 
 const PricingBox = ({ product }: { product: Price }) => {
   // POST request
-  const handleSubscription = async (e: any) => {
+  const handleSubscription = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const { data } = await axios.post(
       "/api/payment",

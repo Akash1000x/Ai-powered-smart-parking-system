@@ -1,6 +1,7 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import prisma from "@/database";
+import { User } from "next-auth";
 
 export const authOptions = {
   providers: [
@@ -15,11 +16,10 @@ export const authOptions = {
         },
         password: { label: "Password", type: "password", required: true },
       },
-      // TODO: User credentials type from next-auth
-      async authorize(credentials) {
-        if (!credentials) {
-          return null;
-        }
+
+      async authorize(credentials: Record<"email" | "password", string> | undefined): Promise<User | null> {
+        if (!credentials?.email || !credentials?.password) return null;
+
         //  zod validation, OTP validation here
         const existingUser = await prisma.admin.findFirst({
           where: {

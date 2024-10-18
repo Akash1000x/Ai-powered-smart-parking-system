@@ -35,7 +35,6 @@ export default function ProfileForm() {
       if (res?.ok) {
         router.push("/");
       } else if (!res?.error) {
-        // router.push(props.callbackUrl ?? "http://localhost:3000");
         toast.error("An error occurred");
       }
     } catch (error) {
