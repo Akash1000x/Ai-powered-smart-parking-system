@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+AI-Powered Parking Management System:
 
-## Getting Started
+This project is an AI-based parking management system designed to automate the process of vehicle entry, parking, and exit. The system uses number plate recognition and a web interface to streamline parking operations, ensuring a smooth and efficient experience.
 
-First, run the development server:
+Features:
+Number Plate Recognition: Automatically scans vehicle license plates at the entry and exit gates.
+Seamless Entry: The gate opens automatically once the vehicle's license plate is recognized.
+Web-Based Payment System: Users can input their vehicle details, scan a QR code, and submit payments directly through the website.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Exit Process: 
+Once the payment is confirmed, the exit gate opens automatically after scanning the number plate.
+Reminders for Unpaid Users: If payment is not made, a reminder is sent before the vehicle can exit.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Real-Time Alerts: Users receive an on-screen alert confirming the successful payment and allowing exit.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Technologies Used:
+Frontend & Backend: Next.js for both frontend and backend development.
+AI for License Plate Recognition: Utilizing OpenCV and a machine learning model to extract vehicle license plate information.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Payment Integration: Integrated with a payment gateway to handle transactions securely.
 
-## Learn More
+QR Code Scanning: Used to identify parked vehicles and initiate the payment process.
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Project Structure:
+pages/: Contains Next.js pages for user interaction and payment processing.
+components/: Reusable UI components.
+public/: Public assets like images and styles.
+backend/: Custom API routes and server-side functionality for handling payments, license plate scanning, and more.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Installation
+Clone the Repository:
 
-## Deploy on Vercel
+bash
+Copy code
+git clone https://github.com/your-repo/parking-management-system.git
+Install Dependencies:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+bash
+Copy code
+npm install
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Set Up Environment Variables: Create a .env.local file and add your API keys and other environment-specific variables.
+
+How It Works
+
+Vehicle Arrival: The system scans the number plate when a vehicle arrives, opening the entry gate if the scan is successful.
+
+User Actions:
+Users park their vehicles and scan a QR code displayed at the parking spot.
+The QR code opens the parking management website, where users input their vehicle details and make payments.
+
+Exit: At the exit, the system scans the number plate again. If payment has been made, the gate opens automatically. If not, a reminder is shown, and payment is required before exiting.
+
+Payment Processing
+The web app includes a payment gateway integration that allows users to pay for parking directly via the website. Once the payment is processed, users will receive a confirmation alert, and the system will allow them to exit.
