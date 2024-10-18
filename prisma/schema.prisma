@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        Int    @id @default(autoincrement())
+  name      String
+  email     String @unique
+  mobile    String @unique
+  password  String
+  placeName String
+  placeId   String @unique @default(cuid())
+
+  parkingRecords ParkingRecord[] @relation("PlaceParking")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ParkingRecord {
+  id            Int           @id @default(autoincrement())
+  carNumber     String        @unique
+  mobileNumber  String?
+  entryTime     DateTime      @default(now())
+  exitTime      DateTime?
+  paymentStatus PaymentStatus @default(PENDING)
+  amount        Float?
+  paymentMethod String?
+
+  placeId String
+  admin   Admin  @relation(fields: [placeId], references: [placeId], name: "PlaceParking")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+}
